@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music-Player</title>
+     
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/b82df6e6fb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+         <div class="music-player">
+              <nav>
+                <div class="circle">
+                    <i class="fa-solid fa-angle-left"></i>
+                </div>
+                <div class="circle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+              </nav>
+              <img src="music_img.jpg" alt="music-player" class="song-img">
+              <h1>song title</h1>
+              <p>artist name</p>
+              <audio  id="song">
+                <source src="song.mp3" type="audio/mpeg">
+              </audio>
+              <!--  default progress ko hatayenge kuki age nahi badha sak rahe hai isliye -->
+               <input type="range" value="0" id="progress">
+               <div class="controls">
+                <div> <i class="fa-solid fa-backward"></i></div>
+                <div onclick="playPause()"> <i class="fa-solid fa-play" id="play_btn"></i></div>
+                <div> <i class="fa-solid fa-forward"></i></div>
+               </div>
+         </div>
+    </div>
+
+
+    <script>
+      let progress=document.getElementById("progress")
+      let song = document.getElementById("song")
+      let ctrIcon=document.getElementById("play_btn")
+
+      song.onloadedmetadata=function()
+      {
+        progress.max=song.duration;
+        progress.value=song.currentTime;
+      }
+      function playPause() {
+         if(ctrIcon.classList.contains("fa-pause")){
+           song.pause();
+           ctrIcon.classList.remove("fa-pause");
+           ctrIcon.classList.add("fa-play")
+
+         }
+         else{
+          song.play();  
+          ctrIcon.classList.add("fa-pause");
+           ctrIcon.classList.remove("fa-play")
+           
+         }
+      }
+     
+      if(song.play()){
+        setInterval(() => {
+          progress.value=song.currentTime
+        },500);
+      }
+
+
+      progress.onchange=function()
+      {
+        song.play();
+        song.currentTime=progress.value   ;
+        ctrIcon.classList.add("fa-pause");
+           ctrIcon.classList.remove("fa-play")
+      }
+      </script>
+</body>
+</html>

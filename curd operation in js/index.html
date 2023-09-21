@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>curd</title>
+    <style>
+        /* body{
+              display: flex;
+              background-color: blanchedalmond;
+              justify-content: center;
+             
+        } */
+        /* .main{
+            border: 2px solid #3498db;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+           justify-content: center;
+            background-color: aquamarine;
+            padding: 10px;
+        } */
+        .btn {
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 10px;
+            
+        }
+
+        .main {
+            background-color: red;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content {
+            background-color: bisque;
+            width: 300px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 10px;
+        }
+        #list{
+          list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="main">
+   
+</div> -->
+    <div class="main">
+        <div class="content">
+            <input id="data" type="text" placeholder="enter text">
+            <div class="btn">
+                <button id="btn1">add</button>
+                <button id="btn2">del</button>
+                <button id="btn3">update</button>
+            </div>
+
+
+            <ul id="list">
+                <li ><h3>your item will appear here</h3></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+      
+<script>
+    const data = document.getElementById('data');
+    const list = document.getElementById("list");
+    const btn1=document.getElementById("btn1")
+    const btn2=document.getElementById("btn2")
+    const btn3=document.getElementById("btn3")
+
+    btn1.addEventListener("click",fun1)
+    function fun1(e){
+        
+        console.log(data.value)
+        if(data.value!="" && data.value[0]!=" ")
+        {
+        let li=document.createElement("li")
+        li.innerHTML=data.value;
+        data.value=""
+        list.appendChild(li);
+        }
+        else
+        alert(" input should not be empty and it should also not contain empty data")
+       
+       
+        
+        
+    }
+     
+</script>
+</html>
